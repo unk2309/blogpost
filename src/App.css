@@ -1,0 +1,9 @@
+.tee{
+  font-weight: 100 !important;
+}
+.ade{
+  width:'100vw';
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+  height:'100vh';
+}

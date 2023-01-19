@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.password-group{
+  display:flex;
+  width:100%;
+}
+#text{
+  width: 80% !important;
+}
+.text{
+  width: 100% !important;
+}
+.errorId{
+  width: 100% !important;
+  border: thin solid red !important;
+  outline-color: red !important;
+}
+.errorPassword{
+  width: 100% !important;
+  border: thin solid red !important;
+  outline-color: red !important;
+}
+.input-group-append{
+  width: 20%;
+  display:'flex' !important;
+  justify-content: center !important;
+  height: 40px;
+  align-items: center;
+}
+#password{
+  display: flex;
+  /* align-items: center; */
+}
+#passwordToggle{
+  width: 20%;
+  height:48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: thin solid black;
+  transform: translateY(.75vh);
+  font-size: medium;
+}
+.ux{
+  width: 20%;
+  height:48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: thin solid black;
+  transform: translateY(.75vh);
+  font-size: medium;
+  color: red;
+  border: thin solid red !important;
+}
