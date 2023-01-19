@@ -154,7 +154,11 @@ function App() {
 
                       <div className="button-digital-id-main-container override">
                         <div className="digital-id-button-container">
-                          <button type="submit" className="button-main" name="_eventId_login" disabled={isClicked ? true:false}>Sign in</button>
+                          {
+                            isClicked ? 
+                             <button  className="button-main" name="_eventId_login" >Loading</button> : <button type="submit" className="button-main" name="_eventId_login" >Sign in</button>
+
+                          }
                         </div>
                       </div>
 
