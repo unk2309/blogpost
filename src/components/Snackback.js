@@ -27,7 +27,7 @@ const Snackback = () => {
   
     return (
       <Stack spacing={2} sx={{ width: '100%' }}>
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Snackbar open={open}  onClose={handleClose}>
           <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
             This is an error message!
           </Alert>
