@@ -10,7 +10,7 @@ import ModalOpen from './components/ModalOpen';
 
 function App() {
 
-  const url = `${process.env.REACT_APP_URL}post/newpost`
+  const url = `${process.env.REACT_APP_URL}/post/newpost`
   const [open, setOpen] = useState(false);
     const handleOpen = () => {
         setOpen(true);
