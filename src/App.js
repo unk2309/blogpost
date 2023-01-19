@@ -10,6 +10,7 @@ import ModalOpen from './components/ModalOpen';
 
 function App() {
 
+  const url = `${process.env.REACT_APP_URL}post/newpost`
   const [open, setOpen] = useState(false);
     const handleOpen = () => {
         setOpen(true);
@@ -39,7 +40,8 @@ function App() {
     },
     onSubmit: (values) => {
       setIsClicked(true)
-        axios.post(`${process.env.REACT_APP_URL}post/newpost`, values).then((result) => {
+      console.log(url);
+        axios.post(url, values).then((result) => {
             if (result.data.status) {
               setIsClicked(false)
               setOpen(true);
