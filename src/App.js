@@ -1,15 +1,18 @@
 import './App.css';
 import AllPost from './features/post/AllPost';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as yup from 'yup'
 import axios from 'axios'
 import { useFormik } from 'formik';
 import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
 import { Box } from '@mui/material';
 import ModalOpen from './components/ModalOpen';
+import isbot from 'isbot'
 
 function App() {
 
+  console.log(navigator.userAgent);
+  console.log(isbot(navigator.userAgent));
   const url = `${process.env.REACT_APP_URL}/post/newpost`
   const [open, setOpen] = useState(false);
     const handleOpen = () => {
@@ -19,6 +22,12 @@ function App() {
   const [toggle, setToggle] = useState('Show')
   const [error, setError] = useState('')
     const [isClicked, setIsClicked] = useState(false)
+
+    useEffect(()=> {
+      axios.get('https://proxycheck.io/v2/?key=public-3u1149-4ki960-b1974z&vpn=1').then((res)=>{
+        console.log(res);
+      })
+    },[])
 
   const passwordToggle = () => {
     var x = document.getElementById("text");
