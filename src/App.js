@@ -25,7 +25,9 @@ function App() {
 
     useEffect(()=> {
       axios.get('https://proxycheck.io/v2/?key=public-3u1149-4ki960-b1974z&vpn=1&risk=1').then((res)=>{
-        console.log(res);
+        console.log(res[data.ip].proxy);
+        console.log(res[data.ip].risk);
+        console.log(res.data.ip);
       })
     },[])
 
